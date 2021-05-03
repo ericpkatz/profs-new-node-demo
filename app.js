@@ -1,13 +1,12 @@
-const fs = require('fs');
+const readFile = require('./readFile');
 
-fs.readFile('simple.txt', (err, result)=> {
-  if(err){
-    console.log('you have an error');
-    console.log(err);
+process.stdin.on('data', (data)=> {
+  const fileName = data.toString().trim();
+  if(fileName === 'q'){
+    process.exit();
   }
   else {
-    console.log(result.toString());
+    readFile(fileName);
   }
 });
 
-console.log('starting');
